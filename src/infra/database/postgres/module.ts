@@ -4,7 +4,6 @@ import { PostgressService } from './service';
 import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import path from 'path';
 import { DataSource, DataSourceOptions } from 'typeorm';
-import { User } from 'src/core/user/entity/user.entity';
 
 @Module({
   imports: [
