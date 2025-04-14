@@ -1,0 +1,24 @@
+services:
+  postgres-local:
+    image: postgres:17.4-alpine3.21
+    container_name: postgres
+    cap_add:
+      - SYS_NICE
+    environment:
+      POSTGRES_USER: expressCommerceUser
+      POSTGRES_PASSWORD: Admin@123
+      POSTGRES_DB: expressCommerce
+      TZ: Asia/Bangkok
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres-local:/var/lib/postgres
+      - ./postgres-local/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - expressCommerce-network
+networks:
+  userManager-network:
+    driver: bridge
+volumes:
+  postgres-local:
+    driver: local

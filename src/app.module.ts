@@ -1,0 +1,24 @@
+
+import { Module } from '@nestjs/common';
+import { ClientsModule, Transport } from '@nestjs/microservices';
+import * as fs from 'fs';
+import { InfraModule } from './infra/module';
+
+@Module({
+  imports: [
+    InfraModule,
+    ClientsModule.register([
+      {
+        name: 'USER_SERVICE',
+        transport: Transport.TCP,
+        // options: {
+        //   tlsOptions: {
+        //     ca: [fs.readFileSync('<pathToCaFile>', 'utf-8').toString()],
+        //   },
+        // },
+      },
+    ]),
+  ],
+  providers: []
+})
+export class AppModule {}
