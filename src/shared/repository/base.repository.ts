@@ -37,7 +37,7 @@ export class BaseRepository<T extends BaseEntity> {
     currentRecord: DeepPartial<T>,
     data: QueryDeepPartialEntity<T>,
     options?: SaveOptions,
-  ): Promise<T | null> {
+  ): Promise<T> {
     const entity = await this.repository.create({
       ...currentRecord,
       ...data,

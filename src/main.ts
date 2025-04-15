@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import * as fs from 'fs';
 import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 import { AppModule } from './app.module';
+import { SwaggerModule } from './infra/swagger/swagger.module';
 
 async function bootstrap() {
   // const key = fs.readFileSync('<pathToKeyFile>', 'utf8').toString();
@@ -9,9 +10,12 @@ async function bootstrap() {
 
   const app = await NestFactory.create(AppModule, {
     bufferLogs: true,
-    cors: true
+    cors: true,
   });
-  
+
+  const swaggerModule = app.get(SwaggerModule);
+  swaggerModule.setupSwagger(app);
+
   // const microserviceTcp = app.connectMicroservice<MicroserviceOptions>({
   //   transport: Transport.TCP,
   //   options: {

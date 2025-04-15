@@ -1,17 +1,19 @@
-import path from "path";
-import { DataSource } from "typeorm";
-import { SnakeNamingStrategy } from "typeorm-naming-strategies";
+import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { EnvironmentService } from 'src/infra/environment/environment.service';
+import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 
-export const dataSource = new DataSource({
-    type: 'postgres',
-    host: process.env.POSTGRES_HOST,
-    port: Number(process.env.POSTGRES_PORT),
-    username: process.env.POSTGRES_USER,
-    password: process.env.POSTGRES_PASSWORD,
-    database: process.env.POSTGRES_DATABASE,
-    namingStrategy: new SnakeNamingStrategy(),
-    logging: true,
-    migrationsTableName: 'migrations',
-    // migrations: [path.join(__dirname, '/migrations/*.{ts,js}')],
-    entities: [path.join(__dirname, '/core/**/entity/*.{ts,js}')]
-})
+export const getTypeOrmModuleOptions = (
+  config: EnvironmentService,
+): TypeOrmModuleOptions => ({
+  type: 'postgres',
+  host: config.getPostgresHost(),
+  port: config.getPostgresPort(),
+  username: config.getPostgresUsername(),
+  password: config.getPostgresPassword(),
+  database: config.getPostgresDatabase(),
+  namingStrategy: new SnakeNamingStrategy(),
+  logging: true,
+  migrationsTableName: 'migrations',
+  // migrations: [path.join(__dirname, '/migrations/*.{ts,js}')],
+  entities: ['../../../core/**/entity/*.{ts,js}'],
+});

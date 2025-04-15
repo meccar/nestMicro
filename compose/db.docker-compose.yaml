@@ -7,7 +7,7 @@ services:
     environment:
       POSTGRES_USER: expressCommerceUser
       POSTGRES_PASSWORD: Admin@123
-      POSTGRES_DB: expressCommerce
+      POSTGRES_DB: userManager
       TZ: Asia/Bangkok
     ports:
       - '5432:5432'
@@ -15,7 +15,7 @@ services:
       - postgres-local:/var/lib/postgres
       - ./postgres-local/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
-      - expressCommerce-network
+      - userManager-network
 networks:
   userManager-network:
     driver: bridge
