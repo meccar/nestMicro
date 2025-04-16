@@ -9,7 +9,7 @@ import {
 import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity';
 import { BaseEntity } from '../entity/base.entity';
 
-export class BaseRepository<T extends BaseEntity> {
+export abstract class BaseRepository<T extends BaseEntity> {
   constructor(protected readonly repository: Repository<T>) {}
 
   async create(data: DeepPartial<T>, saveOptions?: SaveOptions): Promise<T> {

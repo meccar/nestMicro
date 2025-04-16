@@ -1,7 +1,10 @@
 import { Module } from '@nestjs/common';
-import { UserModule } from './user/user.module';
+import { UserHandlerModule } from './user/user.module';
+import { UserResolver } from './user/user.resolver';
+import { CqrsModule } from '@nestjs/cqrs';
 
 @Module({
-  imports: [UserModule],
+  imports: [UserHandlerModule, CqrsModule],
+  providers: [UserResolver],
 })
 export class PresentationModule {}

@@ -8,21 +8,13 @@ async function bootstrap() {
   // const key = fs.readFileSync('<pathToKeyFile>', 'utf8').toString();
   // const cert = fs.readFileSync('<pathToCertFile>', 'utf8').toString();
 
-  const app = await NestFactory.create(AppModule, {
-    bufferLogs: true,
-    cors: true,
+  const app = await NestFactory.create(AppModule);
+
+  app.connectMicroservice<MicroserviceOptions>({
+    transport: Transport.TCP,
+    options: { host: '127.0.0.1', port: 3002 },
   });
-
-  const swaggerModule = app.get(SwaggerModule);
-  swaggerModule.setupSwagger(app);
-
-  // const microserviceTcp = app.connectMicroservice<MicroserviceOptions>({
-  //   transport: Transport.TCP,
-  //   options: {
-  //     port: 3001,
-  //   },
-  // });
-
+  await app.startAllMicroservices();
   await app.listen(3001);
 }
 bootstrap();

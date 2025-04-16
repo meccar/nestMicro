@@ -3,7 +3,7 @@ import { BaseEntity } from 'src/shared/entity/base.entity';
 import { Column, Entity } from 'typeorm';
 
 @Entity()
-export class User extends BaseEntity {
+export class UserEntity extends BaseEntity {
   @Column()
   @AutoMap()
   firstName: string;
@@ -24,10 +24,10 @@ export class User extends BaseEntity {
   password: string;
 
   @Column()
-  accessFailedCount: number;
+  accessFailedCount: number = 0;
 
   @Column()
-  lockoutEnabled: boolean;
+  lockoutEnabled: boolean = false;
 
   @Column()
   lockoutEnd: Date | null;

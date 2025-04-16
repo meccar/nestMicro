@@ -6,10 +6,10 @@ export class BaseEntity {
   readonly id: number;
 
   @Column()
-  readonly code: string;
+  code: string;
 
-  @Column()
-  readonly version: number;
+  @Column({ default: 1 })
+  version: number;
 
   @Column()
   readonly createdAt?: Date | null | undefined;
@@ -23,6 +23,6 @@ export class BaseEntity {
   @Column()
   updatedBy: string;
 
-  @Column()
-  deletedAt?: Date | null | undefined = null;
+  @Column({ default: null })
+  deletedAt?: Date | null | undefined;
 }
