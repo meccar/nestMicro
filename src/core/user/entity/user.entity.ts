@@ -21,6 +21,7 @@ export class UserEntity extends BaseEntity {
   email: string;
 
   @Column()
+  @AutoMap()
   password: string;
 
   @Column()
@@ -29,6 +30,6 @@ export class UserEntity extends BaseEntity {
   @Column()
   lockoutEnabled: boolean = false;
 
-  @Column()
+  @Column({ type: 'timestamp', nullable: true })
   lockoutEnd: Date | null;
 }

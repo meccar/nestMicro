@@ -18,15 +18,15 @@ import { classes } from '@automapper/classes';
     AutomapperModule.forRoot({
       strategyInitializer: classes(),
     }),
-    GraphQLModule.forRoot<ApolloDriverConfig>({
-      driver: ApolloDriver,
-      typePaths: ['./src/**/*.graphql'],
-      autoSchemaFile: true,
-      definitions: {
-        path: join(process.cwd(), './core/graphql/graphql.ts'),
-        outputAs: 'interface',
-      },
-    }),
+    // GraphQLModule.forRoot<ApolloDriverConfig>({
+    //   driver: ApolloDriver,
+    //   typePaths: ['./src/**/*.graphql'],
+    //   autoSchemaFile: true,
+    //   definitions: {
+    //     path: join(process.cwd(), './core/graphql/graphql.ts'),
+    //     outputAs: 'interface',
+    //   },
+    // }),
     ClientsModule.register([
       {
         name: 'USER_SERVICE',

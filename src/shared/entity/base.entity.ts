@@ -11,18 +11,18 @@ export class BaseEntity {
   @Column({ default: 1 })
   version: number;
 
-  @Column()
-  readonly createdAt?: Date | null | undefined;
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  readonly createdAt?: Date | null;
 
   @Column()
   createdBy: string;
 
-  @Column()
-  readonly updatedAt?: Date | null | undefined;
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  readonly updatedAt?: Date | null;
 
   @Column()
   updatedBy: string;
 
-  @Column({ default: null })
-  deletedAt?: Date | null | undefined;
+  @Column({ type: 'timestamp', nullable: true, default: null })
+  deletedAt?: Date | null;
 }

@@ -5,6 +5,17 @@ import { ConfigService } from '@nestjs/config';
 export class EnvironmentService {
   constructor(private configService: ConfigService) {}
 
+  isDev(): boolean {
+    return this.configService.get<string>('NODE_ENV') === 'dev';
+  }
+
+  getSalt(): number {
+    const salt = this.configService.get<number>('SALT');
+    if (!salt) throw new Error('SALT is not defined');
+
+    return salt;
+  }
+
   getPostgresHost(): string {
     const host = this.configService.get<string>('POSTGRES_HOST');
     if (!host) throw new Error('POSTGRES_HOST is not defined');

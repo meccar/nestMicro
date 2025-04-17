@@ -1,7 +1,6 @@
 scalar Date
 
 type User {
-  id: Int!
   firstName: String!
   lastName: String!
   userName: String!
@@ -11,6 +10,12 @@ type User {
   updatedAt: Date!
   updatedBy: String!
   deletedAt: Date
+}
+
+type UserResponse {
+  status: Boolean!
+  message: String
+  data: User
 }
 
 input CreateUserInput {
@@ -31,11 +36,11 @@ input UpdateUserInput {
 }
 
 type Query {
-  getUser(id: Int!): User
+  getUser(id: Int!): UserResponse
 }
 
 type Mutation {
-  createUser(input: CreateUserInput!): User!
-  updateUser(input: UpdateUserInput!): User!
+  createUser(input: CreateUserInput!): UserResponse!
+  updateUser(input: UpdateUserInput!): UserResponse!
   deleteUser(id: Int!): Boolean!
 }

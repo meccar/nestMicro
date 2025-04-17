@@ -1,4 +1,4 @@
-import { IUsecase } from 'src/shared/interface/usecase';
+import { IUsecase } from 'src/shared/interfaces/usecase';
 import { CreateUserInput } from '../input/create-user.input';
 import { UserOutput } from '../output/user.output';
 

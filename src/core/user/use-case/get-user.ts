@@ -1,6 +1,6 @@
-import { IUsecase } from 'src/shared/interface/usecase';
-import { UserRepository } from '../repository/user.repository';
+import { IUsecase } from 'src/shared/interfaces/usecase';
 import { Injectable } from '@nestjs/common';
+import { UserRepository } from 'src/infra/database/repository/user.repository';
 
 @Injectable()
 export class GetUserUseCase implements IUsecase {
